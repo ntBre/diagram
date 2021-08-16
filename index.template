@@ -1,0 +1,27 @@
+{{define "index"}}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>diagram</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <div id="myapp"></div>
+  <script>
+  var app = Elm.Main.init({
+    node: document.getElementById("myapp"),
+    flags: {img: "{{.Img}}",
+    caps: [
+    {{range .Caps}}
+    { text: "{{.Text}}", size: "{{.Size}}", position: "{{stringify .Position}}" },
+    {{end}}
+    ],
+    capfile: "{{.Capfile}}"
+    }
+  });
+  </script>
+</body>
+</html>
+{{end}}

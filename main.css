@@ -1,0 +1,17 @@
+img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 90vh;
+    max-width: 100vh;
+    border: 3px solid #bbb;
+}
+
+table {
+    border: 1px solid black;
+}
+
+thead {
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}

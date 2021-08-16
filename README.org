@@ -1,0 +1,32 @@
+* diagram
+
+  diagram is a tool for manipulating PNG images using imagemagick and
+  the Go image library
+
+** Dependencies
+   - [[https://golang.org/][Go]]
+   - [[https://imagemagick.org/][ImageMagick]] with Pango support
+     - on Arch Pango is an optional dependency of ImageMagick, so make
+       sure you also have that installed for creating labels
+   - [[https://elm-lang.org/][elm]]
+
+   ```
+   $ diagram [-grid h,v] captions image
+   ```
+
+   Will put the captions in the `captions` file onto the PNG image
+   `image`. The format of the caption file is
+
+   ```
+   Text Size  xpos,ypos
+   ```
+
+   Where `Text` is a single "word" (no spaces allowed), `Size` is an
+   integer points for the font size, and `xpos,ypos` is a comma-separated
+   pair denoting the x- and y-position of the label. The `-grid` flag
+   takes a comma-separated pair of integers denoting the number of
+   `h`orizontal and `v`ertical gridlines to draw.
+
+** 
+
+** 
