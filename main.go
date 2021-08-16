@@ -33,7 +33,7 @@ var (
 )
 
 const (
-	help = `diagram <captions> <image.png>
+	help = `diagram -cap <captions> <image.png>
 where captions is a caption file with lines of the format
     text size xpos,ypos 
 text is a string for the caption (without spaces), size is an integer

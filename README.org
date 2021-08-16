@@ -10,23 +10,50 @@
        sure you also have that installed for creating labels
    - [[https://elm-lang.org/][elm]]
 
-   ```
-   $ diagram [-grid h,v] captions image
-   ```
+** Usage
+*** Basic usage
+    To load a list of captions from =capfile= and place them on =input.png= run:
+    
+    #+begin_src shell
+      $ diagram -cap capfile input.png
+    #+end_src
 
-   Will put the captions in the `captions` file onto the PNG image
-   `image`. The format of the caption file is
+*** Captions
+    Caption files are of the form
 
-   ```
-   Text Size  xpos,ypos
-   ```
+    #+begin_src text
+      Text Size Xpos,Ypos
+    #+end_src
 
-   Where `Text` is a single "word" (no spaces allowed), `Size` is an
-   integer points for the font size, and `xpos,ypos` is a comma-separated
-   pair denoting the x- and y-position of the label. The `-grid` flag
-   takes a comma-separated pair of integers denoting the number of
-   `h`orizontal and `v`ertical gridlines to draw.
+    - =Text= is arbitrary text, not including spaces. HTML codes like
+      <sub> and <sup> are passed directly to Pango, but you can also
+      use a LaTeX-style _X, where X is one or more digits (\d+).
+    - =Size= is the size in pixels of the text for the label
+    - =Xpos,Ypos= is the x (y) or horizontal (vertical) position of
+      the label in pixels
+      
+*** Flags
+    For pure commandline usage, the =-grid= flag is very helpful for
+    aligning your captions manually, and the =-o= flag allows you to
+    save the resulting image directly. For interactive use, see the
+    Web interface section below.
+    
+    - =-grid h,v= : draw a grid with =h= horizontal and =v= vertical
+      divisions of the image
+    - =-o outfile= : write the resulting image to =outfile=
+    - =-cap capfile= : take the list of captions from capfile
+    - =-web= : use the web interface
+    - =-crop lx,uy,rx,by= : crop the image to the dimensions specified
+      by =lx=, =uy=, =rx=, and =by=, which are the left-x, upper-y,
+      right-x, and bottom-y coordinates, respectively
+    - =-port port= : specify the port to use for the web server,
+      defaults to :8080
 
-** 
-
-** 
+*** Web interface
+    Since it can be unwieldy to write the captions from scratch, there
+    is a web interface available via the =-web= flag. This starts a
+    server on localhost:8080 by default, but you can adjust the port
+    with the =-port= flag. After you finish editing the captions, you
+    can save them to a file for later commandline use. Save the image
+    by right-clicking and saving the image using your typical browser
+    facilities.
