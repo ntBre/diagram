@@ -345,8 +345,7 @@ func webInterface() {
 	}
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/req", reqHandler)
-	http.HandleFunc("/main.css", fileHandler("main.css"))
-	http.HandleFunc("/main.js", fileHandler("main.js"))
+	http.Handle("/web", http.FileServer(http.FS(content)))
 	http.HandleFunc("/"+ARGS[0], fileHandler(ARGS[0]))
 	http.HandleFunc("/tmp/", miscHandler)
 	log.Fatal(http.ListenAndServe(*port, nil))

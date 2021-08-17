@@ -5,7 +5,8 @@ endif
 run : main.js
 	go run . -web $(GOFLAGS) tests/c2h4.png
 
-install : main.js
+install :
+	make main.js ELMFLAGS='--optimize'
 	go install .
 
 runcap : main.js
@@ -13,7 +14,7 @@ runcap : main.js
 
 main.js : src/Main.elm
 	sed -i 's/\t/        /g' src/Main.elm
-	elm make src/Main.elm --output=web/main.js
+	elm make src/Main.elm $(ELMFLAGS) --output=web/main.js
 
 test:
 	go run . -grid 16,16 -cap tests/c2h4.cap -crop 200,400,3000,2800 tests/c2h4.png
