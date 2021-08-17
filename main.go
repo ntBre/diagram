@@ -332,6 +332,13 @@ func miscHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func webInterface() {
+	if !*test {
+		cmd := exec.Command("xdg-open", "http://localhost"+*port)
+		err := cmd.Run()
+		if err != nil {
+			log.Println(err)
+		}
+	}
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/req", reqHandler)
 	http.HandleFunc("/main.css", fileHandler("main.css"))
