@@ -4,6 +4,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"embed"
 	"errors"
 	"flag"
 	"fmt"
@@ -56,6 +57,9 @@ var (
 	port    = flag.String("port", ":8080", "port to run the web server on")
 	test    = flag.Bool("test", false, "don't xdg-open the localhost server")
 )
+
+//go:embed web/*
+var content embed.FS
 
 // Display encodes img to a temporary file and displays it using the
 // system default image viewer
@@ -226,7 +230,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		"stringify": func(pt image.Point) string {
 			return fmt.Sprintf("%d,%d", pt.X, pt.Y)
 		},
-	}).ParseFiles("index.template")
+	}).ParseFS(content, "web/index.html")
 	if err != nil {
 		panic(err)
 	}
